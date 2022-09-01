@@ -7,7 +7,8 @@ export default class LoginModel implements ILoginModel {
   async findUser(email: string): Promise<IUser | null> {
     return (await this.user.findOne({
       where: { email },
-    }))?.get({ plain: true }) as IUser;
+      raw: true,
+    })) as IUser;
   }
 
   async findRole(email: string): Promise<IRole | null> {
@@ -16,6 +17,7 @@ export default class LoginModel implements ILoginModel {
       attributes: {
         exclude: ['id', 'username', 'email', 'password'],
       },
-    }))?.get({ plain: true }) as IRole;
+      raw: true,
+    })) as IRole;
   }
 }

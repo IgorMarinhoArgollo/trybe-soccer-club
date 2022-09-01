@@ -32,8 +32,7 @@ export default class MatchModel implements IMatchModel {
   }
 
   async createMatch(matchInfo: IMatchInfo): Promise<IMatch> {
-    return (await this.match.create({ ...matchInfo, inProgress: true }))
-      ?.get({ plain: true }) as IMatch;
+    return (await this.match.create({ ...matchInfo, inProgress: true }, { raw: true })) as IMatch;
   }
 
   async getById(id: number | string): Promise<boolean> {

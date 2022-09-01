@@ -9,10 +9,7 @@ export default abstract class TokenMiddleware {
       if (!authorization) {
         return res.status(401).json({ message: 'Token not Found' });
       }
-      const result = await new LoginService(new LoginModel()).getRole(authorization);
-      if (!result) {
-        return res.status(401).json({ message: 'Token must be a valid token' });
-      }
+      await new LoginService(new LoginModel()).getRole(authorization);
       next();
     } catch (error) {
       next(error);

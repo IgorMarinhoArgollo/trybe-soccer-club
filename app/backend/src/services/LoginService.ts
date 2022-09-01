@@ -3,7 +3,6 @@ import { ILoginService } from '../interfaces/IServices';
 import { ILoginModel } from '../interfaces/IModels';
 import Bcrypt from '../helpers/Bcrypt';
 import Jwt from '../helpers/Jwt';
-import Err from '../middlewares/Err';
 import IJwtAuth from '../interfaces/IJwtAuth';
 
 export default class LoginService implements ILoginService {
@@ -19,15 +18,10 @@ export default class LoginService implements ILoginService {
     return null;
   }
 
-  async getRole(authorization: string): Promise<IRole> {
-    const email = await Jwt.auth(authorization) as unknown as IJwtAuth;
-    if (!email) {
-      throw new Err(501, 'Not implemented');
-    }
+  async getRole(authorization: string): Promise<IRole | null> {
+    const token = authorization.split(' ');
+    const email = await Jwt.auth(token[1]) as unknown as IJwtAuth;
     const result = await this.loginModel.findRole(email.email);
-    if (!result) {
-      throw new Err(501, 'Not Implemented');
-    }
     return result;
   }
 }

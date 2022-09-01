@@ -5,7 +5,7 @@ import { IRole, IUser } from './IUser';
 
 export interface ILoginService {
   login(email: string, password: string): Promise<IUser | null>;
-  getRole(authorization: string): Promise<IRole>;
+  getRole(authorization: string): Promise<IRole | null>;
 }
 
 export interface ITeamService {

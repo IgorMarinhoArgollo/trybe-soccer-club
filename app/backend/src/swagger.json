@@ -1,16 +1,16 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Blogs API Educational Project",
-    "description": "This is an eductional project to practice the use of Express on a backend application and the use of an ORM (Sequelize) to create and seed the project's database. It was developed in JS and also used tools as helmet, limit-rate, morgan, JWT authentication and swagger to prepara the docs. This project was developed during the Backend Module of Trybe Course",
+    "title": "Trybe Soccer Club - Soccer Ranking Project",
+    "description": "This is an eductional project to practice the use of TypeScript with Express on a backend application and the use of an ORM (Sequelize) to create and seed the project's database. It was developed in TS and also used tools as helmet, limit-rate, morgan, JWT authentication and swagger to prepara the docs. This project was developed during the Backend Module of Trybe Course. The frontend part of this project was made available by Trybe",
     "version": "1.0.0",
     "contact": {
       "email": "igormarinhoargollo@gmail.com"
     }
   },
   "server": {
-    "url": "http://localhost:3000",
-    "description": "Blogs API"
+    "url": "http://localhost:3001",
+    "description": "Trybe Soccer Club - Soccer Ranking Project"
   },
   "paths": {
     "/login": {
@@ -23,22 +23,22 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema":{
-                "type":"object",
+              "schema": {
+                "type": "object",
                 "properties": {
-                  "email":{
-                    "type":"string",
-                    "required":"true"
+                  "email": {
+                    "type": "string",
+                    "required": "true"
                   },
                   "password": {
-                    "type":"string",
-                    "required":"true"
+                    "type": "string",
+                    "required": "true"
                   }
                 }
               },
-              "example":{
-                "email": "lewishamilton@gmail.com",
-                "password": "123456"
+              "example": {
+                "email": "admin@admin.com",
+                "password": "secret_admin"
               }
             }
           }
@@ -59,7 +59,7 @@
                 "examples": {
                   "login": {
                     "value": {
-                      "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxld2lzaGFtaWx0b25AZ21haWwuY29tIiwiaWF0IjoxNjYwNjU5OTk2LCJleHAiOjE2NjEyNjQ3OTZ9.t41pXd_yKnagrto6uQrpH4l3UAFwPt-uzyyU1K1vGqI"
+                      "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2MTgwODE4MSwiZXhwIjoxNjYyNDEyOTgxfQ.usrh36s9E0P45OovNFLGbmuMz8x4C4mNQFoJs2dLLl8"
                     }
                   }
                 }
@@ -69,118 +69,51 @@
         }
       }
     },
-    "/user": {
-      "post": {
-        "summary": "Sign up a new user",
-        "description": "This route is responsible for signin up a new user adding the data on database",
-        "tags": [
-          "user"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "displayName": {
-                    "type":"string",
-                    "required":"true"
-                  },
-                  "email": {
-                    "type": "string",
-                    "required":"true"
-                  },
-                  "password": {
-                    "type": "string",
-                    "required":"true"
-                  },
-                  "image": {
-                    "type": "string",
-                    "required": "true"
-                  }
-                }
-              },
-              "example": {
-                "displayName": "Brett Wiltshire",
-                "email": "brett@email.com",
-                "password": "123456",
-                "image": "http://4.bp.blogspot.com/_YA50adQ-7vQ/S1gfR_6ufpI/AAAAAAAAAAk/1ErJGgRWZDg/S45/brett.png"
-              }
-            }
+    "/login/validate": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
           }
-        },
+        ],
+        "summary": "The role verifier endpoint",
+        "description": "An endpoint that provided an token returns the role od the user",
+        "tags": [
+          "login"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "headers",
+            "description": "Token to get the role",
+            "required": "true"
+          }
+        ],
         "responses": {
-          "201": {
-            "description": "User signed in",
+          "200": {
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "token": {
+                    "role": {
                       "type": "string"
                     }
                   }
                 },
                 "examples": {
-                  "login": {
+                  "role": {
                     "value": {
-                      "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxld2lzaGFtaWx0b25AZ21haWwuY29tIiwiaWF0IjoxNjYwNjU5OTk2LCJleHAiOjE2NjEyNjQ3OTZ9.t41pXd_yKnagrto6uQrpH4l3UAFwPt-uzyyU1K1vGqI"
+                      "role": "admin"
                     }
                   }
                 }
               }
             }
           },
-          "400": {
-            "description": "Invalid Field"
-          },
-          "409": {
-            "description": "User already registered"
-          }
-        }
-      },
-      "get": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Get all users",
-        "description": "This route is responsible for getting all users on database",
-        "tags": [
-          "user"
-        ],
-        "responses": {
-          "200": {
-            "description": "All Users",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                },
-                "example": [
-                  {
-                    "id": 1,
-                    "displayName": "Lewis Hamilton",
-                    "email": "lewishamilton@gmail.com",
-                    "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg"
-                  },
-                  {
-                    "id": 2,
-                    "displayName": "Michael Schumacher",
-                    "email": "MichaelSchumacher@gmail.com",
-                    "image": "https://sportbuzz.uol.com.br/media/_versions/gettyimages-52491565_widelg.jpg"
-                  }
-                ]
-              }
-            }
-          },
           "401": {
-            "description": "User unauthorized",
+            "description": "Token not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -192,7 +125,7 @@
                   }
                 },
                 "example": {
-                  "message": "Token not found or Expired or invalid token"
+                  "message": "Token not Found"
                 }
               }
             }
@@ -200,17 +133,46 @@
         }
       }
     },
-    "/user/{id}": {
+    "/teams": {
       "get": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Get user by id",
-        "description": "This route is responsible for get an specific user by id.",
+        "summary": "Get all teams",
+        "description": "This route is responsible for getting all teams on database",
         "tags": [
-          "user"
+          "teams"
+        ],
+        "responses": {
+          "200": {
+            "description": "All teams",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Team"
+                  }
+                },
+                "example": [
+                  {
+                    "id": 1,
+                    "teamName": "Avaí/Kindermann"
+                  },
+                  {
+                    "id": 2,
+                    "teamName": "Bahia"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/teams/{id}": {
+      "get": {
+        "summary": "Get team by Id",
+        "description": "This route is responsible for getting an team by Id on database",
+        "tags": [
+          "teams"
         ],
         "parameters": [
           {
@@ -222,24 +184,21 @@
         ],
         "responses": {
           "200": {
-            "description": "Found User",
+            "description": "Found Team Info",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "$ref": "#/components/schemas/User"
+                  "$ref": "#/components/schemas/Team"
                 },
                 "example": {
                   "id": 1,
-                  "displayName": "Lewis Hamilton",
-                  "email": "lewishamilton@gmail.com",
-                  "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg"
+                  "teamName": "Avaí/Kindermann"
                 }
               }
             }
           },
-          "404": {
-            "description": "User not Found",
+          "400": {
+            "description": "Team not Found",
             "content": {
               "application/json": {
                 "schema": {
@@ -251,25 +210,7 @@
                   }
                 },
                 "example": {
-                  "message": "User does not exists"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "User unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "message": "Token not found or Expired or invalid token"
+                  "message": "Team Not Found"
                 }
               }
             }
@@ -277,94 +218,40 @@
         }
       }
     },
-    "/user/me": {
-      "delete": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Delete logged user on database",
-        "description": "This route is responsible for deleting the logged user in the database",
-        "tags": [
-          "user"
-        ],
-        "responses": {
-          "204": {
-            "description": "User Successfully Deleted"
-          },
-          "401": {
-            "description": "User unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "message": "Token not found or Expired or invalid token"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/categories": {
+    "/matches": {
       "get": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Get all categories",
-        "description": "This route is responsible for getting all registered categories",
+        "summary": "Get all matches",
+        "description": "This route is responsible for get all matches in the database.",
         "tags": [
-          "categories"
+          "matches"
         ],
         "responses": {
           "200": {
-            "description": "All categories",
+            "description": "Found Matches",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Category"
+                    "$ref": "#/components/schemas/Match"
                   }
                 },
                 "example": [
                   {
                     "id": 1,
-                    "name": "Inovação"
-                  },
-                  {
-                    "id": 2,
-                    "name": "Escola"
-                  }
-                ]
-              }
-            }
-          },
-          "401": {
-            "description": "User unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
+                    "homeTeam": 16,
+                    "homeTeamGoals": 1,
+                    "awayTeam": 8,
+                    "awayTeamGoals": 1,
+                    "inProgress": false,
+                    "teamHome": {
+                      "teamName": "São Paulo"
+                    },
+                    "teamAway": {
+                      "teamName": "Grêmio"
                     }
                   }
-                },
-                "example": {
-                  "message": "Token not found or Expired or invalid token"
-                }
+                ]
               }
             }
           }
@@ -376,240 +263,49 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Create a new category",
-        "description": "This route is responsible for creating a new category in the database",
+        "summary": "Create match",
+        "description": "This route is responsible for creating a new match.",
         "tags": [
-          "categories"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type":"object",
-                "properties":{
-                  "name": {
-                    "type":"string",
-                    "required":"true"
-                  }
-                }
-              },
-              "example": {
-                "name": "Typescript"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Created category",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Category"
-                },
-                "example": {
-                  "id": 2,
-                  "name": "Escola"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "User unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "message": "Token not found or Expired or invalid token"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/post": {
-      "get": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Get all posts",
-        "description": "This route is responsible for getting all registered posts",
-        "tags": [
-          "post"
-        ],
-        "responses": {
-          "200": {
-            "description": "All posts",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Post"
-                  }
-                },
-                "example": [
-                  {
-                    "id": 1,
-                    "title": "Post do Ano",
-                    "content": "Melhor post do ano",
-                    "userId": 1,
-                    "published": "2011-08-01T19:58:00.000Z",
-                    "updated": "2011-08-01T19:58:51.000Z",
-                    "user": {
-                      "id": 1,
-                      "displayName": "Lewis Hamilton",
-                      "email": "lewishamilton@gmail.com",
-                      "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg"
-                    },
-                    "categories": [
-                      {
-                        "id": 1,
-                        "name": "Inovação"
-                      }
-                    ]
-                  },
-                  {
-                    "id": 2,
-                    "title": "Vamos que vamos",
-                    "content": "Foguete não tem ré",
-                    "userId": 1,
-                    "published": "2011-08-01T19:58:00.000Z",
-                    "updated": "2011-08-01T19:58:51.000Z",
-                    "user": {
-                      "id": 1,
-                      "displayName": "Lewis Hamilton",
-                      "email": "lewishamilton@gmail.com",
-                      "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg"
-                    },
-                    "categories": [
-                      {
-                        "id": 2,
-                        "name": "Escola"
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          },
-          "401": {
-            "description": "User unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "message": "Token not found or Expired or invalid token"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Create a new post",
-        "description": "This route is responsible for creating a new post in the database",
-        "tags": [
-          "post"
+          "matches"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "title": {
-                    "type": "string",
-                    "required": "true"
-                  },
-                  "content": {
-                    "type": "string",
-                    "required": "true"
-                  },
-                  "categoryIds": {
-                    "type": "array",
-                    "required": "true",
-                    "items": {
-                      "type":"number"
-                    }
-                  }
-                }
+                "$ref": "#/components/schemas/MatchToCreate"
               },
               "example": {
-                "title": "Latest updates, August 1st",
-                "content": "The whole text for the blog post goes here in this key",
-                "categoryIds": [1, 2]
+                "homeTeam": 7,
+                "awayTeam": 11,
+                "homeTeamGoals": 3,
+                "awayTeamGoals": 0
               }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Created category",
+            "description": "Match successfully created",
             "content": {
               "application/json": {
                 "schema": {
-                  "type":"object",
-                  "properties": {
-                    "id": {
-                      "type":"number"
-                    },
-                    "title": {
-                      "type": "string"
-                    },
-                    "content": {
-                      "type":"string"
-                    },
-                    "userId": {
-                      "type": "string"
-                    },
-                    "updated": {
-                      "type":"string"
-                    },
-                    "published": {
-                      "type":"string"
-                    }
-
-                  }
+                  "type": "object",
+                  "$ref": "#/components/schemas/CreatedMatch"
                 },
                 "example": {
-                  "id": 3,
-                  "title": "Latest updates, August 1st",
-                  "content": "The whole text for the blog post goes here in this key",
-                  "userId": 1,
-                  "updated": "2022-05-18T18:00:01.196Z",
-                  "published": "2022-05-18T18:00:01.196Z"
+                  "id": 49,
+                  "homeTeam": 7,
+                  "awayTeam": 11,
+                  "homeTeamGoals": 3,
+                  "awayTeamGoals": 0,
+                  "inProgress": true
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid Field"
-          },
-          "401": {
-            "description": "User unauthorized",
+            "description": "Invalid Fields",
             "content": {
               "application/json": {
                 "schema": {
@@ -621,7 +317,7 @@
                   }
                 },
                 "example": {
-                  "message": "Token not found or Expired or invalid token"
+                  "message": "Invalid Fields"
                 }
               }
             }
@@ -629,112 +325,18 @@
         }
       }
     },
-    "/post/{id}": {
-      "get": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Get post by id",
-        "description": "This route is responsible for get an specific post by id.",
+    "/matches/{id}": {
+      "patch": {
+        "summary": "Update score of a game",
+        "description": "This route is responsible for updating the score of a match.",
         "tags": [
-          "post"
+          "matches"
         ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "Id to get",
-            "required": "true"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Found post",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "$ref": "#/components/schemas/Post"
-                },
-                "example": {
-                  "id": 1,
-                  "title": "Post do Ano",
-                  "content": "Melhor post do ano",
-                  "userId": 1,
-                  "published": "2011-08-01T19:58:00.000Z",
-                  "updated": "2011-08-01T19:58:51.000Z",
-                  "user": {
-                    "id": 1,
-                    "displayName": "Lewis Hamilton",
-                    "email": "lewishamilton@gmail.com",
-                    "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg"
-                  },
-                  "categories": [
-                    {
-                      "id": 1,
-                      "name": "Inovação"
-                    }
-                  ]
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Post not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "message": "Post does not exists"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "User unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "message": "Token not found or Expired or invalid token"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Update an existing post",
-        "description": "This route is responsible for updating an existing post.",
-        "tags": [
-          "post"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Id to get",
+            "description": "Match id to update score",
             "required": "true"
           }
         ],
@@ -744,64 +346,44 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "title": {
-                    "type": "string",
+                  "homeTeamGoals": {
+                    "type": "number",
                     "required": "true"
                   },
-                  "content": {
-                    "type": "string",
+                  "awayTeamGoals": {
+                    "type": "number",
                     "required": "true"
                   }
                 }
               },
               "example": {
-                "title": "Latest updates, August 1st",
-                "content": "The whole text for the blog post goes here in this key"
+                "homeTeamGoals": 3,
+                "awayTeamGoals": 1
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "Post updated",
+            "description": "Score successfully updated",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "$ref": "#/components/schemas/Post"
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
                 },
                 "example": {
-                  "id": 3,
-                  "title": "Latest updates, August 1st",
-                  "content": "The whole text for the blog post goes here in this key",
-                  "userId": 1,
-                  "published": "2022-05-18T18:00:01.000Z",
-                  "updated": "2022-05-18T18:07:32.000Z",
-                  "user": {
-                    "id": 1,
-                    "displayName": "Lewis Hamilton",
-                    "email": "lewishamilton@gmail.com",
-                    "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg"
-                  },
-                  "categories": [
-                    {
-                      "id": 1,
-                      "name": "Inovação"
-                    },
-                    {
-                      "id": 2,
-                      "name": "Escola"
-                    }
-                  ]
+                  "message": "Score Updated"
                 }
               }
             }
           },
           "400": {
-            "description": "Invalid Field"
-          },
-          "401": {
-            "description": "User unauthorized",
+            "description": "Match not Found/ Invalid Field",
             "content": {
               "application/json": {
                 "schema": {
@@ -813,53 +395,7 @@
                   }
                 },
                 "example": {
-                  "message": "Token not found or Expired or invalid token"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Delete an existing post",
-        "description": "This route is responsible for deleting an existing post.",
-        "tags": [
-          "post"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "Id to get",
-            "required": "true"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Post deleted"
-          },
-          "404": {
-            "description": "Post does not exists"
-          },
-          "401": {
-            "description": "User unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "message": "Token not found or Expired or invalid token"
+                  "message": "Match not Found"
                 }
               }
             }
@@ -867,64 +403,24 @@
         }
       }
     },
-    "/post/search": {
-      "get": {
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Get a post by it's name/content or part of them",
-        "description": "This route is responsible for getting a post by it's name or content ",
+    "/matches/{id}/finish": {
+      "patch": {
+        "summary": "Update status of a game",
+        "description": "This route is responsible for updating the status of a match.",
         "tags": [
-          "post"
+          "matches"
         ],
         "parameters": [
           {
-            "name": "q",
-            "in": "query",
-            "description": "Name or content to get",
+            "name": "id",
+            "in": "path",
+            "description": "Match id to update status",
             "required": "true"
           }
         ],
         "responses": {
           "200": {
-            "description": "Found posts",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Post"
-                  }
-                },
-                "example": [
-                  {
-                    "id": 2,
-                    "title": "Vamos que vamos",
-                    "content": "Foguete não tem ré",
-                    "userId": 1,
-                    "published": "2011-08-01T19:58:00.000Z",
-                    "updated": "2011-08-01T19:58:51.000Z",
-                    "user": {
-                      "id": 1,
-                      "displayName": "Lewis Hamilton",
-                      "email": "lewishamilton@gmail.com",
-                      "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg"
-                    },
-                    "categories": [
-                      {
-                        "id": 2,
-                        "name": "Escola"
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          },
-          "401": {
-            "description": "User unauthorized",
+            "description": "Match Finished",
             "content": {
               "application/json": {
                 "schema": {
@@ -936,8 +432,140 @@
                   }
                 },
                 "example": {
-                  "message": "Token not found or Expired or invalid token"
+                  "message": "Finished"
                 }
+              }
+            }
+          },
+          "400": {
+            "description": "Match not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "message": "Match not Found"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leaderboard": {
+      "get": {
+        "summary": "Get the Leaderboard",
+        "description": "This endpoint is responsible for getting the leaderboard from the database",
+        "tags": [
+          "leaderboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "Leaderboard",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TeamPoints"
+                  }
+                },
+                "example": [
+                  {
+                    "name": "Palmeiras",
+                    "totalPoints": 13,
+                    "totalGames": 5,
+                    "totalVictories": 4,
+                    "totalDraws": 1,
+                    "totalLosses": 0,
+                    "goalsFavor": 17,
+                    "goalsOwn": 5,
+                    "goalsBalance": 12,
+                    "efficiency": "86.67"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leaderboard/home": {
+      "get": {
+        "summary": "Get the Leaderboard by Home Ranking",
+        "description": "This endpoint is responsible for getting the leaderboard by home ranking from the database",
+        "tags": [
+          "leaderboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "Leaderboard",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TeamPoints"
+                  }
+                },
+                "example": [
+                  {
+                    "name": "Santos",
+                    "totalPoints": 9,
+                    "totalGames": 3,
+                    "totalVictories": 3,
+                    "totalDraws": 0,
+                    "totalLosses": 0,
+                    "goalsFavor": 9,
+                    "goalsOwn": 3,
+                    "goalsBalance": 6,
+                    "efficiency": "100.00"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/leaderboard/away": {
+      "get": {
+        "summary": "Get the Leaderboard by away ranking",
+        "description": "This endpoint is responsible for getting the leaderboard by away ranking from the database",
+        "tags": [
+          "leaderboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "Leaderboard",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TeamPoints"
+                  }
+                },
+                "example": [
+                  {
+                    "name": "Palmeiras",
+                    "totalPoints": 6,
+                    "totalGames": 2,
+                    "totalVictories": 2,
+                    "totalDraws": 0,
+                    "totalLosses": 0,
+                    "goalsFavor": 7,
+                    "goalsOwn": 0,
+                    "goalsBalance": 7,
+                    "efficiency": "100.00"
+                  }
+                ]
               }
             }
           }
@@ -947,76 +575,128 @@
   },
   "components": {
     "schemas": {
-      "Login": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "required": "true"
-          },
-          "password": {
-            "type": "string",
-            "required": "true"
-          }
-        }
-      },
-      "User": {
+      "Team": {
         "type": "object",
         "properties": {
           "id": {
             "type": "number"
           },
-          "displayName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "image": {
+          "teamname": {
             "type": "string"
           }
         }
       },
-      "Category": {
+      "Match": {
         "type": "object",
         "properties": {
           "id": {
             "type": "number"
           },
+          "homeTeam": {
+            "type": "number"
+          },
+          "homeTeamGoals": {
+            "type": "number"
+          },
+          "awayTeam": {
+            "type": "number"
+          },
+          "awayTeamGoals": {
+            "type": "number"
+          },
+          "inProgress": {
+            "type": "boolean"
+          },
+          "teamHome": {
+            "type": "object",
+            "properties": {
+              "teamName": {
+                "type": "string"
+              }
+            }
+          },
+          "teamAway": {
+            "type": "object",
+            "properties": {
+              "teamName": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "MatchToCreate": {
+        "type": "object",
+        "properties": {
+          "homeTeam": {
+            "type": "number"
+          },
+          "awayTeam": {
+            "type": "number"
+          },
+          "homeTeamGoals": {
+            "type": "number"
+          },
+          "awayTeamGoals": {
+            "type": "number"
+          }
+        }
+      },
+      "CreatedMatch": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "homeTeam": {
+            "type": "number"
+          },
+          "awayTeam": {
+            "type": "number"
+          },
+          "homeTeamGoals": {
+            "type": "number"
+          },
+          "awayTeamGoals": {
+            "type": "number"
+          },
+          "inProgress": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TeamPoints": {
+        "type": "object",
+        "properties": {
           "name": {
             "type": "string"
-          }
-        }
-      },
-      "Post": {
-        "type": "object",
-        "properties": {
-          "id": {
+          },
+          "totalPoints": {
             "type": "number"
           },
-          "title": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "userId": {
+          "totalGames": {
             "type": "number"
           },
-          "published": {
+          "totalVictories": {
+            "type": "number"
+          },
+          "totalDraws": {
+            "type": "number"
+          },
+          "totalLosses": {
+            "type": "number"
+          },
+          "goalsFavor": {
+            "type": "number"
+          },
+          "goalsOwn": {
+            "type": "number"
+          },
+          "goalsBalance": {
+            "type": "number"
+          },
+          "efficiency": {
             "type": "string"
-          },
-          "updated": {
-            "type": "string"
-          },
-          "user":{
-            "$ref": "#/components/schemas/User"
-          },
-          "categories": {
-            "type":"array",
-            "items":{
-              "$ref": "#/components/schemas/Category"
-            }
           }
         }
       }

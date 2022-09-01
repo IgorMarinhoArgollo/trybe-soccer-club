@@ -9,6 +9,6 @@ export default class TeamModel implements ITeamModel {
   }
 
   async findById(id: number): Promise<ITeam | null> {
-    return (await this.team.findByPk(id))?.get({ plain: true });
+    return this.team.findByPk(id, { raw: true });
   }
 }

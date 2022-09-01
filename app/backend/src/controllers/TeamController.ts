@@ -19,6 +19,7 @@ export default abstract class TeamController {
       if (result) {
         return res.status(200).json(result);
       }
+      return res.status(400).json({ mesdage: 'Team Not Found' });
     } catch (error) {
       next(error);
     }

@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import MatchService from '../services/MatchService ';
 import MatchModel from '../models/MatchModel';
-import Err from '../middlewares/Err';
 
 export default abstract class MatchesController {
   static async updateScore(req: Request, res: Response, next: NextFunction) {
@@ -60,7 +59,7 @@ export default abstract class MatchesController {
     try {
       const matchInfo = req.body;
       if (!matchInfo.awayTeam || !matchInfo.homeTeam) {
-        throw new Err(400, 'Invalid Fields');
+        return res.status(400).json({ message: 'Invalid Fields' });
       }
       const result = await new MatchService(new MatchModel()).createMatch(matchInfo);
       return res.status(201).json(result);
