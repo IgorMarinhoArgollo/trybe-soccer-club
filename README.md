@@ -15,6 +15,9 @@
   O Projeto Trybe Soccer Club foi desenvolvido para fins educacionais no módulo de Backend no Curso de Desenvolvimento Web Full Stack na Trybe. <br> Além da parcela do backend (desenvolvida em Node.js e ExpressJS em TypeScript), o projeto conta com um banco de dados relacionais desenvolvido em MySQL, através da ferramenta de Mapeamento Objeto Relacional (ORM) Sequelize. <br>
   A parcela frontend dessa aplicação web foi desenvolvida e oferecida pela trybe.<br><br>
   
+  ## Live
+  * Localmente a aplicação está funcionando como deveria, entretanto, tendo em vista a não gratuidade do serviço de banco de dados do Heroku, a implementação do banco não foi realizada. Assim sendo, o para testar a aplicação basta realizar os passos indicados na seção como rodar e testar a aplicação.
+
   ## Objetivos
   * Elaborar o Backend de um gerenciador de tabela de campeonato de futebol;
   * Implementar as rotas: Login, Time, Partida, Ranking e outra para documentação e teste;
@@ -169,7 +172,8 @@ A API tem apenas dois endpoints protegidos por token (o endpoint para criar uma 
   The Trybe Soccer Club Project was developed for educational purposes in the Backend module of the Full Stack Web Development Course at Trybe. <br> In addition to the backend part (developed in Node.js and ExpressJS in TypeScript), the project has a relational database developed in MySQL, through the Sequelize Object Relational Mapping (ORM) tool. <br>
   The frontend part of this web application was developed and provided by trybe.<br><br>
   
-
+## Live
+  * Locally the application is working as it should, however, due to the non-gratuity of the Heroku database service, the database implementation was not carried out. Therefore, to test the application, just follow the steps indicated in the section on how to run and test the application.
 
 ## My Goals
 * Develop the Backend of a football league table manager;
