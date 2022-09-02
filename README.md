@@ -11,9 +11,9 @@
    
 <details>
   <summary><h2>:brazil: Português</h2></summary>
-  O Projeto Trybe Soccer Club foi desenvolvido para fins educacionais no módulo de Backend no Curso de Desenvolvimento Web Full Stack na Trybe. <br> Além da parcela do backend (desenvolvida em Node.js e ExpressJS em TypeScript), o projeto conta com um banco de dados relacionais desenvolvido em MySQL, através da ferramenta de Mapeamento Objeto Relacional (ORM) Sequelize. <br>
-  A parcela frontend dessa aplicação web foi desenvolvida e oferecida pela trybe.<br>
   Esse projeto trata de um ranking de um campeonato de futebol onde é possível, através dos endpoints, consultar as partidas, os times, fazer o login  consultar a função do usuário, além disso é possível se filtrar por partidas terminadas e por rankings em times da casa e visitantes.<br><br>
+  O Projeto Trybe Soccer Club foi desenvolvido para fins educacionais no módulo de Backend no Curso de Desenvolvimento Web Full Stack na Trybe. <br> Além da parcela do backend (desenvolvida em Node.js e ExpressJS em TypeScript), o projeto conta com um banco de dados relacionais desenvolvido em MySQL, através da ferramenta de Mapeamento Objeto Relacional (ORM) Sequelize. <br>
+  A parcela frontend dessa aplicação web foi desenvolvida e oferecida pela trybe.<br><br>
   
   ## Objetivos
   * Elaborar o Backend de um gerenciador de tabela de campeonato de futebol;
@@ -71,12 +71,12 @@
    SKIP_PREFLIGHT_CHECK=true
   ```
 
-  ### Rodar todo a aplicação
+  ### Rodar toda a aplicação
   #### Requisitos:
    * Docker
    * Docker-compose
   
-  #### Iniciando os containeres
+  #### Iniciando todo o projeto
   acesse a pasta /app e passe o seguinte comando no terminal:
   
     docker-compose up
@@ -84,9 +84,9 @@
   após a conclusão da configuração do container a aplicação estará disponível no localhost na porta 3000, definida no docker:
 
   http://localhost:3000
+<br><br>
 
-
-  ### Rodar todo a apenas o backend  
+  ### Rodar apenas o backend  
   #### Iniciando a parte do backend
   acesse a pasta /app/backend<br>
   no terminal, para startar o container:
@@ -94,6 +94,7 @@
     npm run dev
 
   Após o término da configuração a aplicação estará disponível no localhost na porta definida no .env:
+  
   http://localhost:3001
 
   sendo a documentação disponível em:
@@ -101,22 +102,7 @@
   http://localhost:3001/api-docs/
 
   ## Rotas
-
-     * A API tem apenas dois endpoints protegidos por token (o endpoint para criar uma partida e o endpoint para obter a posição do usuário) podendo ser acessado com as seguintes credenciais no endpoint de login para a obtenção do token:
-      ```
-      {
-        "email": "admin@admin.com",
-        "password": "secret_admin"
-      }
-      ```
-   após a obtenção do token no endpoint de login, basta cola-lo em "Bearer " na chave Authorization" do header da requisição, como o exemplo:
-
-   ```
-   {
-    "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2MTgwODE4MSwiZXhwIjoxNjYyNDEyOTgxfQ.usrh36s9E0P45OovNFLGbmuMz8x4C4mNQFoJs2dLLl8"
-   }
-   ```
-  ### 
+  
   * GET /api-docs
   ------------------------
   * POST /login
@@ -130,8 +116,24 @@
   * GET /leaderboard
   * GET /leaderboard
   * GET /leaderboard
+   
+  ###
   
-  
+A API tem apenas dois endpoints protegidos por token (o endpoint para criar uma partida e o endpoint para obter a posição do usuário) podendo ser acessado com as seguintes credenciais no endpoint de login para a obtenção do token:
+     
+      ```
+      {
+        "email": "admin@admin.com",
+        "password": "secret_admin"
+      }
+      ```
+   após a obtenção do token no endpoint de login, basta cola-lo em "Bearer " na chave Authorization" do header da requisição, como o exemplo:
+
+   ```
+   {
+    "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2MTgwODE4MSwiZXhwIjoxNjYyNDEyOTgxfQ.usrh36s9E0P45OovNFLGbmuMz8x4C4mNQFoJs2dLLl8"
+   }
+   ```  
     
   ## Testes Desenvolvidos
   Use npm test para rodar todos os testes e verificar cobertura:<br>
@@ -163,9 +165,10 @@
   
   ##  
   ## :us: English
-  The Trybe Soccer Club Project was developed for educational purposes in the Backend module of the Full Stack Web Development Course at Trybe. <br> In addition to the backend part (developed in Node.js and ExpressJS in TypeScript), the project has a relational database developed in MySQL, through the Sequelize Object Relational Mapping (ORM) tool. <br>
-  The frontend part of this web application was developed and provided by trybe.<br>
   This project deals with a ranking of a soccer championship where it is possible, through the endpoints, to consult the matches, teams, login and consult the user's role, in addition, it is possible to filter by finished games, score of  home's team and visitors.<br><br>
+  The Trybe Soccer Club Project was developed for educational purposes in the Backend module of the Full Stack Web Development Course at Trybe. <br> In addition to the backend part (developed in Node.js and ExpressJS in TypeScript), the project has a relational database developed in MySQL, through the Sequelize Object Relational Mapping (ORM) tool. <br>
+  The frontend part of this web application was developed and provided by trybe.<br><br>
+  
 
 
 ## My Goals
@@ -228,7 +231,7 @@
    * Docker
    * Docker-compose
   
-  #### Starting containers
+  ### Starting all the project
   Go to /app file and use on terminal:
   
     docker-compose up
@@ -245,6 +248,7 @@
     npm run dev
 
   After the end of configuration, the application will be available on localhost on port 3001 witch was defined on .env file:
+  
   http://localhost:3001
 
   To see the API's documentation:
@@ -252,21 +256,7 @@
   http://localhost:3001/api-docs/
 
 ## Routes
-  * The API has only two token-protected endpoints (the endpoint to create a match and the endpoint to get the user's position) which can be accessed with the following credentials in the login endpoint to get the token:
-      ```
-      {
-        "email": "admin@admin.com",
-        "password": "secret_admin"
-      }
-      ```
-   after obtaining the token in the login endpoint, just paste it in "Bearer " in the Authorization key of the request header as example:
 
-  ```
-     {
-        "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2MTgwODE4MSwiZXhwIjoxNjYyNDEyOTgxfQ.usrh36s9E0P45OovNFLGbmuMz8x4C4mNQFoJs2dLLl8"
-      }
-   ```
-### 
   * GET /api-docs
   ------------------------
   * POST /login
@@ -281,6 +271,25 @@
   * GET /leaderboard
   * GET /leaderboard
   
+  ###
+  
+The API has only two token-protected endpoints (the endpoint to create a match and the endpoint to get the user's position) which can be accessed with the following credentials in the login endpoint to get the token:
+
+      ```
+      {
+        "email": "admin@admin.com",
+        "password": "secret_admin"
+      }
+      ```
+      
+   after obtaining the token in the login endpoint, just paste it in "Bearer " in the Authorization key of the request header as example:
+
+
+  ```
+     {
+        "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2MTgwODE4MSwiZXhwIjoxNjYyNDEyOTgxfQ.usrh36s9E0P45OovNFLGbmuMz8x4C4mNQFoJs2dLLl8"
+      }
+   ```
 
 ## Developed Tests
   Use npm test to run all tests and verify coverage:<br>
