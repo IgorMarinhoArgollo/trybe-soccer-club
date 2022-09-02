@@ -15,23 +15,6 @@
   A parcela frontend dessa aplicação web foi desenvolvida e oferecida pela trybe.<br>
   Esse projeto trata de um ranking de um campeonato de futebol onde é possível, através dos endpoints, consultar as partidas, os times, fazer o login  consultar a função do usuário, além disso é possível se filtrar por partidas terminadas e por rankings em times da casa e visitantes.<br><br>
   
-  ## Live Link
-  <a href="https://trybe-soccer-club.herokuapp.com/api-docs/">Live/Documentação</a><br><br>
-   * A API tem apenas dois endpoints protegidos por token (o endpoint para criar uma partida e o endpoint para obter a posição do usuário) podendo ser acessado com as seguintes credenciais no endpoint de login para a obtenção do token:
-      ```
-      {
-        "email": "admin@admin.com",
-        "password": "secret_admin"
-      }
-      ```
-   após a obtenção do token no endpoint de login, basta cola-lo em "Bearer " na chave Authorization" do header da requisição, como o exemplo:
-
-   ```
-   {
-    "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2MTgwODE4MSwiZXhwIjoxNjYyNDEyOTgxfQ.usrh36s9E0P45OovNFLGbmuMz8x4C4mNQFoJs2dLLl8"
-   }
-   ```
-  
   ## Objetivos
   * Elaborar o Backend de um gerenciador de tabela de campeonato de futebol;
   * Implementar as rotas: Login, Time, Partida, Ranking e outra para documentação e teste;
@@ -43,7 +26,7 @@
   * Elaborar testes de integração cobrindo, a princípio, 100% da aplicação (outros testes ainda serão desenvolvidos para melhorar ainda mais a aplicação web);
   * Implementação de endpoints com informações necessárias para a alimentação do frontend fornecido.<br><br>
   
-  ## Tecnologias usadas
+  ## Tecnologias utilizadas
   * node.js
   * Express Js
   * TypeScript
@@ -71,7 +54,7 @@
   
     git clone git@github.com:IgorMarinhoArgollo/trybe-soccer-club.git
     
-  ### Crie o arquivo .env na pasta tfc-backend
+  ### Criar o arquivo .env na pasta tfc-backend
   Chaves que devem ser inseridas no arquivo .env dentro da pasta app/backend:
   ```
     JWT_SECRET=jwt_secret
@@ -82,31 +65,58 @@
     DB_PORT=3306
 
   ```
-  ### Crie o arquivo .env na pasta tfc-frontend
+  ### Criar o arquivo .env na pasta tfc-frontend
   Chaves que devem ser inseridas no arquivo .env dentro da pasta app/frontend:
   ```
    SKIP_PREFLIGHT_CHECK=true
   ```
 
-  ### Rodar no Container
+  ### Rodar todo a aplicação
   #### Requisitos:
    * Docker
    * Docker-compose
   
-  #### Iniciando o projeto
-  no terminal:
+  #### Iniciando os containeres
+  acesse a pasta /app e passe o seguinte comando no terminal:
   
     docker-compose up
+
+  após a conclusão da configuração do container a aplicação estará disponível no localhost na porta 3000, definida no docker:
+
+  http://localhost:3000
+
+
+  ### Rodar todo a apenas o backend  
+  #### Iniciando a parte do backend
+  acesse a pasta /app/backend<br>
+  no terminal, para startar o container:
   
-  #### Rodando a aplicação Backend
-  no terminal do container do backend:
-    
     npm run dev
 
+  Após o término da configuração a aplicação estará disponível no localhost na porta definida no .env:
+  http://localhost:3001
+
+  sendo a documentação disponível em:
+
+  http://localhost:3001/api-docs/
 
   ## Rotas
-  Vide detalhes na documentação disponível na rota: 
-  
+
+     * A API tem apenas dois endpoints protegidos por token (o endpoint para criar uma partida e o endpoint para obter a posição do usuário) podendo ser acessado com as seguintes credenciais no endpoint de login para a obtenção do token:
+      ```
+      {
+        "email": "admin@admin.com",
+        "password": "secret_admin"
+      }
+      ```
+   após a obtenção do token no endpoint de login, basta cola-lo em "Bearer " na chave Authorization" do header da requisição, como o exemplo:
+
+   ```
+   {
+    "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2MTgwODE4MSwiZXhwIjoxNjYyNDEyOTgxfQ.usrh36s9E0P45OovNFLGbmuMz8x4C4mNQFoJs2dLLl8"
+   }
+   ```
+  ### 
   * GET /api-docs
   ------------------------
   * POST /login
@@ -157,22 +167,6 @@
   The frontend part of this web application was developed and provided by trybe.<br>
   This project deals with a ranking of a soccer championship where it is possible, through the endpoints, to consult the matches, teams, login and consult the user's role, in addition, it is possible to filter by finished games, score of  home's team and visitors.<br><br>
 
-## Live Link
-<a href="https://talkermanager.herokuapp.com/api-docs/">Live/Documents</a><br><br>
-  * The API has only two token-protected endpoints (the endpoint to create a match and the endpoint to get the user's position) which can be accessed with the following credentials in the login endpoint to get the token:
-      ```
-      {
-        "email": "admin@admin.com",
-        "password": "secret_admin"
-      }
-      ```
-   after obtaining the token in the login endpoint, just paste it in "Bearer " in the Authorization key of the request header as example:
-
-  ```
-     {
-        "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2MTgwODE4MSwiZXhwIjoxNjYyNDEyOTgxfQ.usrh36s9E0P45OovNFLGbmuMz8x4C4mNQFoJs2dLLl8"
-      }
-   ```
 
 ## My Goals
 * Develop the Backend of a football league table manager;
@@ -204,7 +198,6 @@
 * Chai
 * Sinon
 * DotEnv<br><br>
-
     
 ## How to Run
       
@@ -235,19 +228,45 @@
    * Docker
    * Docker-compose
   
-  #### Starting the project on Docker
-  On terminal:
+  #### Starting containers
+  Go to /app file and use on terminal:
   
     docker-compose up
 
-  #### Running the backend web application
-  On backend container's terminal run:
-    
+  After the end of the containers configuration the application will be available on localhost on port 3000, witch was defined on docker files:
+
+  http://localhost:3000
+
+  ### Running only the backend  
+  #### Starting the backend portion
+  Go to /app/backend,<br>
+  On terminal:
+  
     npm run dev
 
+  After the end of configuration, the application will be available on localhost on port 3001 witch was defined on .env file:
+  http://localhost:3001
+
+  To see the API's documentation:
+
+  http://localhost:3001/api-docs/
+
 ## Routes
-  See more details on documentation available on route: 
-  
+  * The API has only two token-protected endpoints (the endpoint to create a match and the endpoint to get the user's position) which can be accessed with the following credentials in the login endpoint to get the token:
+      ```
+      {
+        "email": "admin@admin.com",
+        "password": "secret_admin"
+      }
+      ```
+   after obtaining the token in the login endpoint, just paste it in "Bearer " in the Authorization key of the request header as example:
+
+  ```
+     {
+        "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTY2MTgwODE4MSwiZXhwIjoxNjYyNDEyOTgxfQ.usrh36s9E0P45OovNFLGbmuMz8x4C4mNQFoJs2dLLl8"
+      }
+   ```
+### 
   * GET /api-docs
   ------------------------
   * POST /login
