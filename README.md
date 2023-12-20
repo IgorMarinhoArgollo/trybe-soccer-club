@@ -1,4 +1,4 @@
-# Trybe Soccer Club
+# Blogs API
 
 <p>
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/IgorMarinhoArgollo/trybe-soccer-club?color=%2304D361">
@@ -12,11 +12,11 @@
 <details>
   <summary><h2>:brazil: Português</h2></summary>
   Esse projeto trata de um ranking de um campeonato de futebol onde é possível, através dos endpoints, consultar as partidas, os times, fazer o login  consultar a função do usuário, além disso é possível se filtrar por partidas terminadas e por rankings em times da casa e visitantes.<br><br>
-  O Projeto Trybe Soccer Club foi desenvolvido para fins educacionais no módulo de Backend no Curso de Desenvolvimento Web Full Stack na Trybe e, além da parcela do backend (desenvolvida em Node.js e ExpressJS em TypeScript), o projeto conta com um banco de dados relacionais desenvolvido em MySQL, através da ferramenta de Mapeamento Objeto Relacional (ORM) Sequelize. <br>
+  O Projeto Trybe Soccer Club foi desenvolvido para fins educacionais no módulo de Backend no Curso de Desenvolvimento Web Full Stack na Trybe. <br> Além da parcela do backend (desenvolvida em Node.js e ExpressJS em TypeScript), o projeto conta com um banco de dados relacionais desenvolvido em MySQL, através da ferramenta de Mapeamento Objeto Relacional (ORM) Sequelize. <br>
   A parcela frontend dessa aplicação web foi desenvolvida e oferecida pela trybe.<br><br>
   
   ## Live
-  * Localmente a aplicação está funcionando como deveria, entretanto, tendo em vista a não gratuidade do serviço de banco de dados do Heroku, a implementação do banco não foi realizada. Sendo assim, para testar a aplicação basta realizar os passos indicados na seção como rodar e testar a aplicação.
+  * Localmente a aplicação está funcionando como deveria, entretanto, tendo em vista a não gratuidade do serviço de banco de dados do Heroku, a implementação do banco não foi realizada. Assim sendo, o para testar a aplicação basta realizar os passos indicados na seção como rodar e testar a aplicação.
 
   ## Objetivos
   * Elaborar o Backend de um gerenciador de tabela de campeonato de futebol;
@@ -57,7 +57,7 @@
   
     git clone git@github.com:IgorMarinhoArgollo/trybe-soccer-club.git
     
-  ### Criar o arquivo .env na pasta tsc-backend
+  ### Criar o arquivo .env na pasta tfc-backend
   Chaves que devem ser inseridas no arquivo .env dentro da pasta app/backend:
   ```
     JWT_SECRET=jwt_secret
@@ -68,7 +68,7 @@
     DB_PORT=3306
 
   ```
-  ### Criar o arquivo .env na pasta tsc-frontend
+  ### Criar o arquivo .env na pasta tfc-frontend
   Chaves que devem ser inseridas no arquivo .env dentro da pasta app/frontend:
   ```
    SKIP_PREFLIGHT_CHECK=true
@@ -169,7 +169,7 @@ A API tem apenas dois endpoints protegidos por token (o endpoint para criar uma 
   ##  
   ## :us: English
   This project deals with a ranking of a soccer championship where it is possible, through the endpoints, to consult the matches, teams, login and consult the user's role, in addition, it is possible to filter by finished games, score of  home's team and visitors.<br><br>
-  The Trybe Soccer Club Project was developed for educational purposes in the Backend module of the Full Stack Web Development Course at Trybe and in addition to the backend part (developed in Node.js and ExpressJS in TypeScript), the project has a relational database developed in MySQL, through the Sequelize Object Relational Mapping (ORM) tool. <br>
+  The Trybe Soccer Club Project was developed for educational purposes in the Backend module of the Full Stack Web Development Course at Trybe. <br> In addition to the backend part (developed in Node.js and ExpressJS in TypeScript), the project has a relational database developed in MySQL, through the Sequelize Object Relational Mapping (ORM) tool. <br>
   The frontend part of this web application was developed and provided by trybe.<br><br>
   
 ## Live
@@ -213,7 +213,7 @@ A API tem apenas dois endpoints protegidos por token (o endpoint para criar uma 
   
     git clone git@github.com:IgorMarinhoArgollo/trybe-soccer-club.git
     
-  ### Create .env file on tsc-backend
+  ### Create .env file on tfc-backend
   These keys mus be inserted on .env file inside app/backend:
   ```
     JWT_SECRET=jwt_secret
@@ -224,7 +224,7 @@ A API tem apenas dois endpoints protegidos por token (o endpoint para criar uma 
     DB_PORT=3306
 
   ```
-  ### Create .env file on tsc-frontend
+  ### Create .env file on tfc-frontend
   These keys mus be inserted on .env file inside app/frontend:
   ```
    SKIP_PREFLIGHT_CHECK=true
