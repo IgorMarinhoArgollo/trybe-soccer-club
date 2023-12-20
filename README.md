@@ -317,6 +317,7 @@ The API has only two token-protected endpoints (the endpoint to create a match a
  <sub><b>Igor Marinho Argollo</b></sub></a> <a href="https://www.linkedin.com/in/igormarinhoargollo/"></a>
  <br />
   
+  
 ## License
   This project is under license:
   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen"><br><br>
